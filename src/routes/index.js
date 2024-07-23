@@ -1,9 +1,11 @@
 const { Router } = require('express');
+const productsRouter = require('./productsRouter');
+
+
 const router = Router();
 
 // Definición de tus rutas aquí
-router.get('/', (req, res) => {
-  res.send('¡Hola, mundo!');
-});
+
+router.use("/product", productsRouter)
 
 module.exports = router;
