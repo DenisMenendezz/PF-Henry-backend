@@ -1,11 +1,10 @@
 const { Router } = require('express');
-const productsRouter = require('./productsRouter');
-
-
 const router = Router();
 
-// Definición de tus rutas aquí //
+// Aquí van tus rutas
+router.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
-router.use("/product", productsRouter)
-
+// Exportar el router
 module.exports = router;
