@@ -43,9 +43,21 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING, 
             allowNull: false,
         },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true // Por defecto, un producto está activo
+        },
         size: {
-            type: DataTypes.ENUM('S', 'M', 'L', 'XL', 'XXL'),
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
+            validate: {
+                customValidator(value) {
+                    const allowedSizes = ['S', 'M', 'L', 'XL', 'XXL'];
+                    if (!value.every(size => allowedSizes.includes(size))) {
+                        throw new Error("Validation isIn on size failed");
+                    }
+                }
+            }
         },
     }, { timestamps: false });
 };
