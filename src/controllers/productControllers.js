@@ -1,8 +1,9 @@
-const { Products } = require ('../models/product.js');
+const { Product } = require ('../db');
 
-export const getproducts = async (req, res) => {
+const getproducts = async (req, res) => {
     try {
-        const products = await Products.findAll()
+        
+        const products = await Product.findAll()
     res.json(products)
     } catch (error) {
         return res.status(500).json({message: error.message});
@@ -10,11 +11,11 @@ export const getproducts = async (req, res) => {
     
 }
 
-export const createproducts = async (req, res) => {
+const createproducts = async (req, res) => {
     const {name, description,color,brand,price,images,stock,gender,category,size, } = req.body;
 
     try {
-        const newproducts = await Products.create({
+        const newproducts = await Product.create({
         name,
         description,
         color,
@@ -35,3 +36,8 @@ export const createproducts = async (req, res) => {
 
 
 }
+
+module.exports = {
+    getproducts,
+    createproducts,
+};
