@@ -1,7 +1,7 @@
 const { Product } = require("../db");
 const { Op } = require("sequelize");
 
-const getProductsController = async (filters) => {
+const getProductsController = async (filters, pagination) => {
   try {
     if (filters.size) {
       filters.size = {
@@ -9,9 +9,49 @@ const getProductsController = async (filters) => {
       };
     }
 
-    // Busca productos en la base de datos con los filtros aplicados
-    const products = await Product.findAll({ where: filters });
+    // Busca productos en la base de datos con los filtros aplicados y paginación
+    const products = await Product.findAll({
+      where: filters,
+      limit: pagination.limit,
+      offset: pagination.offset,
+    });
     return products;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const getProductByNameController = async (name, filters, pagination) => {
+  try {
+    if (filters.size) {
+      filters.size = {
+        [Op.contains]: filters.size,
+      };
+    }
+
+    const productsByName = await Product.findAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+        ...filters,
+      },
+      limit: pagination.limit,
+      offset: pagination.offset,
+    });
+    return productsByName;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const getProductByIdController = async (idProduct) => {
+  try {
+    const product = await Product.findByPk(idProduct);
+    if (!product) {
+      throw new Error("The product doesn`t exist");
+    }
+    return product;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -55,4 +95,6 @@ const createproducts = async (req, res) => {
 module.exports = {
   getProductsController,
   createproducts,
+  getProductByIdController,
+  getProductByNameController,
 };
