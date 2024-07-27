@@ -29,6 +29,8 @@ server.use((req, res, next) => {
 
 server.use("/", router);
 
+server.use(router);
+
 // Error catching endware.
 server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars
@@ -39,13 +41,3 @@ server.use((err, req, res, next) => {
 });
 
 module.exports = server;
-
-// import  express from "express";
-// import productsroutes from './routes/productsroutes.js'
-
-// const app= express();
-
-// app.use(express.json());
-// app.use(productsroutes)
-
-// export default app;
