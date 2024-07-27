@@ -1,4 +1,3 @@
-// import { Router } from "express";
 const { Router } = require("express");
 const { createproducts } = require("../controllers/productControllers.js");
 const { getHandlersProducts } = require("../handlers/productHandlers.js");

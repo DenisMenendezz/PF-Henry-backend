@@ -25,15 +25,6 @@ const getHandlersProducts = async (req, res) => {
   }
 };
 
-// const getHandlersProducts = async (req, res) => {
-//     try {
-//         const allProducts = await getproducts()
-//         res.json(allProducts)
-//     } catch (error) {
-//         res.json({message: error.message});
-//     }
-// }
-
 module.exports = {
   getHandlersProducts,
 };

@@ -17,12 +17,6 @@ const getProductsController = async (filters) => {
   }
 };
 
-// const getproducts = async (req, res) => {
-
-//     const products = await Product.findAll()
-//     return products;
-// }
-
 const createproducts = async (req, res) => {
   const {
     name,
