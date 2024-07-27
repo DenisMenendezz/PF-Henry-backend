@@ -55,53 +55,6 @@ const getHandlersProducts = async (req, res) => {
   }
 };
 
-// const getHandlersProducts = async (req, res) => {
-//   try {
-//     const {
-//       name,
-//       size,
-//       color,
-//       gender,
-//       category,
-//       brand,
-//       minPrice,
-//       maxPrice,
-//       page = 1,
-//       limit = 12,
-//     } = req.query;
-
-//     if (name) {
-//       const queryName = await getProductByNameController(name);
-//       res.json(queryName);
-//     }
-
-//     // Validación de parámetros
-//     const filters = buildFilters({
-//       size,
-//       color,
-//       gender,
-//       category,
-//       brand,
-//       minPrice: Number(minPrice),
-//       maxPrice: Number(maxPrice),
-//     });
-
-//     // Paginación
-//     const pageNumber = Math.max(1, parseInt(page));
-//     const limitNumber = Math.max(1, parseInt(limit));
-//     const offset = (pageNumber - 1) * limitNumber;
-
-//     // Llama al controlador con los filtros aplicados
-//     const products = await getProductsController(filters, {
-//       limit: limitNumber,
-//       offset,
-//     });
-//     res.json(products);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
 const getHandlerByIdProduct = async (req, res) => {
   const { idProduct } = req.params;
 
