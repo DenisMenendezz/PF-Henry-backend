@@ -4,7 +4,7 @@ const { conn } = require("./src/db.js");
 const PORT = process.env.PORT || 3000;
 
 conn
-  .sync({ force: false, alter: true })
+  .sync({ force: true, alter: true })
   .then(() => {
     console.log("Database connected successfully");
 
