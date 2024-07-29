@@ -2,7 +2,7 @@
 const server = require('./src/app');
 const { conn } = require('./src/db');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 10000;
 
 conn.sync({ force: false, alter: true }).then(() => {
   console.log('Database & tables created!');

@@ -9,7 +9,7 @@ const router = require("./routes/index.js");
 const server = express();
 
 server.use(cors({
-  origin: 'http://localhost:3001',
+  origin: 'http://localhost:10000',
   credentials: true
 }));
 
