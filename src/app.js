@@ -1,15 +1,15 @@
+// src/app.js
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const router = require("./routes/index.js");
-const sequelize = require('./db');
 
 const server = express();
 
 server.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:3001',
   credentials: true
 }));
 
