@@ -1,16 +1,23 @@
-const server = require('./src/server'); // Requiere el archivo de configuración
-const {config} = require('dotenv');
-const pg = require("pg");
-const { conn } = require('./src/db.js');
-config()
-new pg.Pool({
-    connectionString:process.env.DATABASE_URL
-})
+const server = require("./src/app.js"); // Requiere el archivo de configuración
+const { conn } = require("./src/db.js");
 
 const PORT = process.env.PORT || 3000;
 
-conn.sync({ force: true }).then(() => {
-    server.listen(3000, () => {
-      console.log('%s listening at 3001'); // eslint-disable-line no-console
-    });
+conn
+  .sync({ force: false, alter: true })
+  .then(() => {
+    console.log("Database connected successfully");
+
+    try {
+      server.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+      });
+    } catch (error) {
+      console.error("Error starting the server:", error);
+      process.exit(1);
+    }
+  })
+  .catch((error) => {
+    console.error("Unable to connect to the database:", error);
+    process.exit(1);
   });

@@ -1,0 +1,565 @@
+[
+    {
+        "name": "Pantalón Algodón",
+        "description": "Pantalón fresco de algodón 100%",
+        "color": "Green",
+        "brand": "Nike",
+        "price": 50000,
+        "images": [
+            "image1.jpg",
+            "image2.jpg"
+        ],
+        "stock": 10,
+        "gender": "Male",
+        "category": "Pantalon",
+        "size": [
+            "S",
+            "M"
+        ]
+    },
+    {
+        "name": "Camiseta Deportiva",
+        "description": "Camiseta ligera para deporte",
+        "color": "Red",
+        "brand": "Adidas",
+        "price": 30000,
+        "images": [
+            "image3.jpg",
+            "image4.jpg"
+        ],
+        "stock": 15,
+        "gender": "Female",
+        "category": "Camiseta",
+        "size": [
+            "M",
+            "L"
+        ]
+    },
+    {
+        "name": "Shorts Verano",
+        "description": "Shorts cómodos para el verano",
+        "color": "Blue",
+        "brand": "Puma",
+        "price": 20000,
+        "images": [
+            "image5.jpg",
+            "image6.jpg"
+        ],
+        "stock": 20,
+        "gender": "Male",
+        "category": "Shorts",
+        "size": [
+            "S",
+            "L"
+        ]
+    },
+    {
+        "name": "Sudadera Invierno",
+        "description": "Sudadera caliente para el invierno",
+        "color": "Black",
+        "brand": "Reebok",
+        "price": 60000,
+        "images": [
+            "image7.jpg",
+            "image8.jpg"
+        ],
+        "stock": 8,
+        "gender": "Female",
+        "category": "Sudadera",
+        "size": [
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "name": "Pantalón Deportivo",
+        "description": "Pantalón ideal para actividades deportivas",
+        "color": "Grey",
+        "brand": "Under Armour",
+        "price": 45000,
+        "images": [
+            "image9.jpg",
+            "image10.jpg"
+        ],
+        "stock": 12,
+        "gender": "Male",
+        "category": "Pantalon",
+        "size": [
+            "M",
+            "XL"
+        ]
+    },
+    {
+        "name": "Camiseta Algodón",
+        "description": "Camiseta 100% algodón",
+        "color": "White",
+        "brand": "Nike",
+        "price": 25000,
+        "images": [
+            "image11.jpg",
+            "image12.jpg"
+        ],
+        "stock": 18,
+        "gender": "Female",
+        "category": "Camiseta",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ]
+    },
+    {
+        "name": "Chaqueta Impermeable",
+        "description": "Chaqueta resistente al agua",
+        "color": "Yellow",
+        "brand": "Adidas",
+        "price": 75000,
+        "images": [
+            "image13.jpg",
+            "image14.jpg"
+        ],
+        "stock": 6,
+        "gender": "Male",
+        "category": "Chaqueta",
+        "size": [
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "name": "Top Deportivo",
+        "description": "Top deportivo para mujeres",
+        "color": "Pink",
+        "brand": "Puma",
+        "price": 35000,
+        "images": [
+            "image15.jpg",
+            "image16.jpg"
+        ],
+        "stock": 25,
+        "gender": "Female",
+        "category": "Top",
+        "size": [
+            "M",
+            "L"
+        ]
+    },
+    {
+        "name": "Pantalones Cortos",
+        "description": "Pantalones cortos cómodos",
+        "color": "Orange",
+        "brand": "Reebok",
+        "price": 22000,
+        "images": [
+            "image17.jpg",
+            "image18.jpg"
+        ],
+        "stock": 30,
+        "gender": "Male",
+        "category": "Shorts",
+        "size": [
+            "S",
+            "M"
+        ]
+    },
+    {
+        "name": "Camiseta Sin Mangas",
+        "description": "Camiseta sin mangas para entrenar",
+        "color": "Purple",
+        "brand": "Under Armour",
+        "price": 28000,
+        "images": [
+            "image19.jpg",
+            "image20.jpg"
+        ],
+        "stock": 10,
+        "gender": "Female",
+        "category": "Camiseta",
+        "size": [
+            "M",
+            "XL"
+        ]
+    },
+    {
+        "name": "Leggings Deportivos",
+        "description": "Leggings ajustados para deporte",
+        "color": "Navy",
+        "brand": "Nike",
+        "price": 40000,
+        "images": [
+            "image21.jpg",
+            "image22.jpg"
+        ],
+        "stock": 22,
+        "gender": "Female",
+        "category": "Leggings",
+        "size": [
+            "S",
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "name": "Camiseta Casual",
+        "description": "Camiseta casual para uso diario",
+        "color": "Maroon",
+        "brand": "Adidas",
+        "price": 27000,
+        "images": [
+            "image23.jpg",
+            "image24.jpg"
+        ],
+        "stock": 13,
+        "gender": "Male",
+        "category": "Camiseta",
+        "size": [
+            "M",
+            "L"
+        ]
+    },
+    {
+        "name": "Pantalón Chándal",
+        "description": "Pantalón chándal para correr",
+        "color": "Green",
+        "brand": "Puma",
+        "price": 38000,
+        "images": [
+            "image25.jpg",
+            "image26.jpg"
+        ],
+        "stock": 14,
+        "gender": "Male",
+        "category": "Pantalon",
+        "size": [
+            "S",
+            "M"
+        ]
+    },
+    {
+        "name": "Chaqueta Polar",
+        "description": "Chaqueta polar para climas fríos",
+        "color": "Black",
+        "brand": "Reebok",
+        "price": 85000,
+        "images": [
+            "image27.jpg",
+            "image28.jpg"
+        ],
+        "stock": 7,
+        "gender": "Female",
+        "category": "Chaqueta",
+        "size": [
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "name": "Camiseta Básica",
+        "description": "Camiseta básica para uso diario",
+        "color": "White",
+        "brand": "Under Armour",
+        "price": 29000,
+        "images": [
+            "image29.jpg",
+            "image30.jpg"
+        ],
+        "stock": 19,
+        "gender": "Male",
+        "category": "Camiseta",
+        "size": [
+            "S",
+            "L"
+        ]
+    },
+    {
+        "name": "Top Yoga",
+        "description": "Top cómodo para yoga",
+        "color": "Blue",
+        "brand": "Nike",
+        "price": 37000,
+        "images": [
+            "image31.jpg",
+            "image32.jpg"
+        ],
+        "stock": 20,
+        "gender": "Female",
+        "category": "Top",
+        "size": [
+            "M",
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "name": "Pantalones Cargo",
+        "description": "Pantalones cargo con múltiples bolsillos",
+        "color": "Khaki",
+        "brand": "Adidas",
+        "price": 55000,
+        "images": [
+            "image33.jpg",
+            "image34.jpg"
+        ],
+        "stock": 9,
+        "gender": "Male",
+        "category": "Pantalon",
+        "size": [
+            "M",
+            "XL"
+        ]
+    },
+    {
+        "name": "Camiseta Running",
+        "description": "Camiseta ligera para correr",
+        "color": "Red",
+        "brand": "Puma",
+        "price": 32000,
+        "images": [
+            "image35.jpg",
+            "image36.jpg"
+        ],
+        "stock": 16,
+        "gender": "Female",
+        "category": "Camiseta",
+        "size": [
+            "S",
+            "M"
+        ]
+    },
+    {
+        "name": "Sudadera Ligera",
+        "description": "Sudadera ligera para uso diario",
+        "color": "Grey",
+        "brand": "Reebok",
+        "price": 48000,
+        "images": [
+            "image37.jpg",
+            "image38.jpg"
+        ],
+        "stock": 11,
+        "gender": "Male",
+        "category": "Sudadera",
+        "size": [
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "name": "Leggings Alta Compresión",
+        "description": "Leggings de alta compresión para deporte",
+        "color": "Black",
+        "brand": "Under Armour",
+        "price": 42000,
+        "images": [
+            "image39.jpg",
+            "image40.jpg"
+        ],
+        "stock": 15,
+        "gender": "Female",
+        "category": "Leggings",
+        "size": [
+            "S",
+            "M"
+        ]
+    },
+    {
+        "name": "Camiseta de Entrenamiento",
+        "description": "Camiseta para entrenamiento intensivo",
+        "color": "Green",
+        "brand": "Nike",
+        "price": 34000,
+        "images": [
+            "image41.jpg",
+            "image42.jpg"
+        ],
+        "stock": 17,
+        "gender": "Male",
+        "category": "Camiseta",
+        "size": [
+            "M",
+            "L"
+        ]
+    },
+    {
+        "name": "Pantalones Ligeros",
+        "description": "Pantalones ligeros y cómodos",
+        "color": "Brown",
+        "brand": "Adidas",
+        "price": 41000,
+        "images": [
+            "image43.jpg",
+            "image44.jpg"
+        ],
+        "stock": 12,
+        "gender": "Male",
+        "category": "Pantalon",
+        "size": [
+            "S",
+            "M"
+        ]
+    },
+    {
+        "name": "Sudadera con Capucha",
+        "description": "Sudadera con capucha para climas fríos",
+        "color": "Blue",
+        "brand": "Puma",
+        "price": 68000,
+        "images": [
+            "image45.jpg",
+            "image46.jpg"
+        ],
+        "stock": 10,
+        "gender": "Female",
+        "category": "Sudadera",
+        "size": [
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "name": "Camiseta de Entrenamiento",
+        "description": "Camiseta de entrenamiento para gimnasio",
+        "color": "Green",
+        "brand": "Reebok",
+        "price": 31000,
+        "images": [
+            "image47.jpg",
+            "image48.jpg"
+        ],
+        "stock": 22,
+        "gender": "Male",
+        "category": "Camiseta",
+        "size": [
+            "M",
+            "XL"
+        ]
+    },
+    {
+        "name": "Leggings Térmicos",
+        "description": "Leggings térmicos para el invierno",
+        "color": "Purple",
+        "brand": "Under Armour",
+        "price": 46000,
+        "images": [
+            "image49.jpg",
+            "image50.jpg"
+        ],
+        "stock": 14,
+        "gender": "Female",
+        "category": "Leggings",
+        "size": [
+            "S",
+            "L"
+        ]
+    },
+    {
+        "name": "Camiseta de Algodón",
+        "description": "Camiseta de algodón para uso diario",
+        "color": "Black",
+        "brand": "Nike",
+        "price": 30000,
+        "images": [
+            "image51.jpg",
+            "image52.jpg"
+        ],
+        "stock": 18,
+        "gender": "Male",
+        "category": "Camiseta",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ]
+    },
+    {
+        "name": "Pantalones Chinos",
+        "description": "Pantalones chinos para uso casual",
+        "color": "Navy",
+        "brand": "Adidas",
+        "price": 52000,
+        "images": [
+            "image53.jpg",
+            "image54.jpg"
+        ],
+        "stock": 9,
+        "gender": "Male",
+        "category": "Pantalon",
+        "size": [
+            "M",
+            "XL"
+        ]
+    },
+    {
+        "name": "Sudadera Deportiva",
+        "description": "Sudadera deportiva para entrenar",
+        "color": "Yellow",
+        "brand": "Puma",
+        "price": 49000,
+        "images": [
+            "image55.jpg",
+            "image56.jpg"
+        ],
+        "stock": 11,
+        "gender": "Female",
+        "category": "Sudadera",
+        "size": [
+            "S",
+            "M"
+        ]
+    },
+    {
+        "name": "Top de Compresión",
+        "description": "Top de compresión para deporte",
+        "color": "Pink",
+        "brand": "Reebok",
+        "price": 37000,
+        "images": [
+            "image57.jpg",
+            "image58.jpg"
+        ],
+        "stock": 20,
+        "gender": "Female",
+        "category": "Top",
+        "size": [
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "name": "Pantalones Deportivos",
+        "description": "Pantalones deportivos cómodos",
+        "color": "Orange",
+        "brand": "Under Armour",
+        "price": 44000,
+        "images": [
+            "image59.jpg",
+            "image60.jpg"
+        ],
+        "stock": 14,
+        "gender": "Male",
+        "category": "Pantalon",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ]
+    },
+    {
+        "name": "Camiseta de Verano",
+        "description": "Camiseta ligera para el verano",
+        "color": "White",
+        "brand": "Nike",
+        "price": 26000,
+        "images": [
+            "image61.jpg",
+            "image62.jpg"
+        ],
+        "stock": 25,
+        "gender": "Female",
+        "category": "Camiseta",
+        "size": [
+            "M",
+            "L"
+        ]
+    }
+]
