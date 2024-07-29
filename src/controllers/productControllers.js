@@ -1,4 +1,4 @@
-const { Product } = require("../db");
+const { Product } = require("../models/Product");
 const { Op } = require("sequelize");
 
 const getProductsController = async (filters, pagination) => {
