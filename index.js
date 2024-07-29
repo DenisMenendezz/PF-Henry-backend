@@ -1,23 +1,13 @@
-const server = require("./src/app.js"); // Requiere el archivo de configuración
-const { conn } = require("./src/db.js");
-
+const server = require("./src/app.js"); // Asegúrate de que esta línea apunte al archivo correcto
+const sequelize = require('./src/db'); // Asegúrate de que esta línea apunte al archivo correcto
 const PORT = process.env.PORT || 3000;
 
-conn
-  .sync({ force: false, alter: true })
-  .then(() => {
-    console.log("Database connected successfully");
+sequelize.sync({ force: false, alter: true }).then(() => {
+  console.log('Database & tables created!');
+}).catch(error => {
+  console.error('Error syncing with the database:', error);
+});
 
-    try {
-      server.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-      });
-    } catch (error) {
-      console.error("Error starting the server:", error);
-      process.exit(1);
-    }
-  })
-  .catch((error) => {
-    console.error("Unable to connect to the database:", error);
-    process.exit(1);
-  });
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
