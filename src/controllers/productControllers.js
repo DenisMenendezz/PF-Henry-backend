@@ -31,11 +31,19 @@ const getProductsController = async (filters, pagination) => {
 
 const getProductByNameController = async (name, filters, pagination) => {
   try {
-    if (filters.size) {
+    if (filters.size && Array.isArray(filters.size)) {
       filters.size = {
-        [Op.contains]: filters.size,
+        [Op.or]: filters.size.map((size) => ({
+          [Op.contains]: [size],
+        })),
       };
     }
+
+    // if (filters.size) {
+    //   filters.size = {
+    //     [Op.contains]: filters.size,
+    //   };
+    // }
 
     const productsByName = await Product.findAll({
       where: {
