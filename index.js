@@ -1,23 +1,14 @@
-const server = require("./src/app.js"); // Requiere el archivo de configuración
-const { conn } = require("./src/db.js");
+// index.js
+const server = require('./src/app');
+const { conn } = require('./src/db');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
-conn
-  .sync({ force: true, alter: true })
-  .then(() => {
-    console.log("Database connected successfully");
-
-    try {
-      server.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-      });
-    } catch (error) {
-      console.error("Error starting the server:", error);
-      process.exit(1);
-    }
-  })
-  .catch((error) => {
-    console.error("Unable to connect to the database:", error);
-    process.exit(1);
+conn.sync({ force: false, alter: true }).then(() => {
+  console.log('Database & tables created!');
+  server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
   });
+}).catch(error => {
+  console.error('Error syncing with the database:', error);
+});
