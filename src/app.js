@@ -64,4 +64,9 @@ server.use((err, req, res, next) => {
   res.status(status).send(message);
 });
 
+const port = process.env.PORT || 3001;
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
 module.exports = server;
