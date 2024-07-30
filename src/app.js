@@ -27,10 +27,14 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-server.use(cors({
-  origin: 'http://localhost:3001',
-  credentials: true
-}));
+server.use(cors());
+
+// server.use(
+//   cors({
+//     // origin: 'http://localhost:10000',
+//     // credentials: true
+//   })
+// );
 
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
