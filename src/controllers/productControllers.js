@@ -3,11 +3,19 @@ const { Op } = require("sequelize");
 
 const getProductsController = async (filters, pagination) => {
   try {
-    if (filters.size) {
+    if (filters.size && Array.isArray(filters.size)) {
       filters.size = {
-        [Op.contains]: filters.size,
+        [Op.or]: filters.size.map((size) => ({
+          [Op.contains]: [size],
+        })),
       };
     }
+
+    // if (filters.size) {
+    //   filters.size = {
+    //     [Op.contains]: filters.size,
+    //   };
+    // }
 
     // Busca productos en la base de datos con los filtros aplicados y paginación
     const products = await Product.findAll({
