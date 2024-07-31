@@ -19,7 +19,10 @@ const getProductsController = async (filters, pagination) => {
 
     // Busca productos en la base de datos con los filtros aplicados y paginación
     const products = await Product.findAll({
-      where: filters,
+      where: {
+        ...filters,
+        active: true,
+      },
       limit: pagination.limit,
       offset: pagination.offset,
     });
@@ -51,6 +54,7 @@ const getProductByNameController = async (name, filters, pagination) => {
           [Op.iLike]: `%${name}%`,
         },
         ...filters,
+        active: true,
       },
       limit: pagination.limit,
       offset: pagination.offset,
