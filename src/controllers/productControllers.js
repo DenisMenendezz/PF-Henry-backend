@@ -73,6 +73,21 @@ const getProductByIdController = async (idProduct) => {
   }
 };
 
+const editProductController = async (idProduct, updates) => {
+  try {
+    const product = await Product.findByPk(idProduct);
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    await product.update(updates);
+
+    return product;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const createproducts = async (req, res) => {
   const {
     name,
@@ -113,4 +128,5 @@ module.exports = {
   createproducts,
   getProductByIdController,
   getProductByNameController,
+  editProductController,
 };

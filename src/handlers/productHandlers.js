@@ -2,6 +2,7 @@ const {
   getProductsController,
   getProductByIdController,
   getProductByNameController,
+  editProductController,
 } = require("../controllers/productControllers");
 const { Op } = require("sequelize");
 
@@ -51,7 +52,7 @@ const getHandlersProducts = async (req, res) => {
     const products = await getProductsController(filters, pagination);
     res.json(products);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -64,6 +65,25 @@ const getHandlerByIdProduct = async (req, res) => {
     res.json(productId);
   } catch (error) {
     res.json({ message: error.message });
+  }
+};
+
+const editProductHandler = async (req, res) => {
+  const { idProduct } = req.params;
+  const updates = req.body;
+
+  try {
+    const editedProduct = await editProductController(idProduct, updates);
+    res.json({
+      message: "Product updated successfully",
+      product: editedProduct,
+    });
+  } catch (error) {
+    if (error.message === "Product not found") {
+      res.status(404).json({ message: error.message });
+    } else {
+      res.status(400).json({ message: error.message });
+    }
   }
 };
 
@@ -105,4 +125,5 @@ const buildFilters = ({
 module.exports = {
   getHandlersProducts,
   getHandlerByIdProduct,
+  editProductHandler,
 };
