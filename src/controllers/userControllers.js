@@ -1,8 +1,9 @@
 const { User } = require("../db");
 
-const createUserController = async (email, role) => {
+const createUserController = async (uid, email, role) => {
   try {
     const newUser = await User.create({
+      uid,
       email,
       role,
     });
@@ -13,9 +14,9 @@ const createUserController = async (email, role) => {
   }
 };
 
-const getUserByIdController = async (email) => {
+const getUserByIdController = async (uid) => {
   try {
-    const user = await User.findByPk(email);
+    const user = await User.findByPk(uid);
     if (!user) {
       throw new Error("The user doesn`t exist");
     }

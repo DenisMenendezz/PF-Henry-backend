@@ -5,13 +5,15 @@ const {
 
 const createUserHandler = async (req, res) => {
   try {
-    const { email, role } = req.body;
+    const { uid, email, role } = req.body;
 
-    if (!email || !role) {
-      return res.status(400).json({ message: "Email and role are required" });
+    if (!uid || !email || !role) {
+      return res
+        .status(400)
+        .json({ message: "UID, email, and role are required" });
     }
 
-    const newUser = await createUserController(email, role);
+    const newUser = await createUserController(uid, email, role);
     res.status(201).json({
       message: "The user has been created successfully",
       user: newUser,
@@ -22,10 +24,10 @@ const createUserHandler = async (req, res) => {
 };
 
 const getHandlerByIdUser = async (req, res) => {
-  const { email } = req.params;
+  const { uid } = req.params;
 
   try {
-    const user = await getUserByIdController(email);
+    const user = await getUserByIdController(uid);
 
     res.json(user);
   } catch (error) {

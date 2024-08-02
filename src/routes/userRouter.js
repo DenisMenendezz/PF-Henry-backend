@@ -8,6 +8,6 @@ const routeruser = Router();
 
 routeruser.post("/create", createUserHandler);
 
-routeruser.get("/:email", getHandlerByIdUser);
+routeruser.get("/:uid", getHandlerByIdUser);
 
 module.exports = routeruser;
