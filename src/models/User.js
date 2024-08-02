@@ -4,9 +4,13 @@ module.exports = (sequelize) => {
   sequelize.define(
     "user",
     {
-      email: {
+      uid: {
         type: DataTypes.STRING,
         primaryKey: true,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       role: {
