@@ -1,14 +1,13 @@
-// src/app.js
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
+const express = require("express");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
 const multer = require('multer');
-const cloudinary = require('cloudinary');
-const fs = require('fs'); // Importa fs para manejar archivos
-const router = require('./routes/index.js');
-const { createPayment } = require('./services/stripe'); // Importa el módulo de Stripe
+const cloudinary = require('cloudinary').v2; // Asegúrate de usar .v2
+const fs = require('fs');
+const router = require("./routes/index.js");
+const stripeRouter = require("./routes/routerstripe.js"); // Importa las rutas de Stripe
 const server = express();
 
 // Configuración de Cloudinary
@@ -30,36 +29,23 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 server.use(cors());
-server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-server.use(bodyParser.json({ limit: '50mb' }));
+server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
-server.use(morgan('dev'));
+server.use(morgan("dev"));
 
-server.use('/', router);
+server.use("/", router);
+server.use("/api", stripeRouter); // Usa un prefijo diferente para las rutas de Stripe
 
 // Ruta para cargar las imágenes
 server.post('/upload', upload.single('image'), async (req, res) => {
   try {
     // Sube la imagen a Cloudinary
     const result = await cloudinary.uploader.upload(req.file.path);
-
     fs.unlinkSync(req.file.path); // Elimina el archivo localmente después de subirlo
     res.status(200).json(result);
   } catch (error) {
     res.status(400).send(error.message);
-  }
-});
-
-// Ruta para manejar pagos con Stripe
-server.post('/checkout', async (req, res) => {
-  try {
-    const { id, amount } = req.body;
-    const payment = await createPayment(id, amount);
-    console.log(payment);
-    res.send({ message: 'Successful payment', payment });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: error.raw.message });
   }
 });
 
