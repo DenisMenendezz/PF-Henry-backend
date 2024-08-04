@@ -1,5 +1,7 @@
 const { Product } = require("../db");
 const { Op } = require("sequelize");
+const cloudinary = require('../config/cloudinaryConfig')
+const stream = require('stream')
 
 const getProductsController = async (filters, pagination) => {
   try {
@@ -92,40 +94,63 @@ const editProductController = async (idProduct, updates) => {
   }
 };
 
+
+
 const createproducts = async (req, res) => {
-  const {
-    name,
-    description,
-    color,
-    brand,
-    price,
-    images,
-    stock,
-    gender,
-    category,
-    size,
-  } = req.body;
+  console.log('files', req.files);
+  console.log('body', req.body);
+
+  const { name, description, color, brand, price, stock, gender, category } = req.body;
+  let { size } = req.body;
 
   try {
-    const newproducts = await Product.create({
+    if (!req.files || req.files.length === 0) {
+      throw new Error('No files uploaded');
+    }
+
+    // Convertir size a un array si no lo es
+    size = Array.isArray(size) ? size : size.replace(/[\[\]\n]/g, '').split(',').map(s => s.trim());
+
+    // Subir imágenes a Cloudinary
+    const uploadedImages = await Promise.all(req.files.map((file) => {
+      return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream({ folder: 'products' }, (error, result) => {
+          if (error) {
+            return reject(error);
+          }
+          resolve(result.secure_url);
+        });
+
+        const bufferStream = new stream.PassThrough();
+        bufferStream.end(file.buffer);
+        bufferStream.pipe(uploadStream);
+      });
+    }));
+
+    const newProduct = await Product.create({
       name,
       description,
       color,
       brand,
       price,
-      images,
+      images: uploadedImages,
       stock,
       gender,
       category,
       size,
     });
 
-    res.json(newproducts);
-    console.log(req.body);
+    res.json({
+      message: 'Product created successfully',
+      product: newProduct,
+      imageUrls: uploadedImages
+    });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
+
+module.exports = { createproducts };
 
 module.exports = {
   getProductsController,

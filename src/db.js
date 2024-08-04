@@ -3,9 +3,6 @@ const path = require('path')
 const fs = require('fs')
 require('dotenv').config();
 const {
-  DB_USER,
-  DB_PASSWORD,
-  DB_HOST,
   DATABASE_URL,
 } = process.env;
 
