@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fs = require('fs');
 const router = require("./routes/index.js");
-const stripeRouter = require("./routes/routerstripe.js"); // Importa las rutas de Stripe
+const{ stripePost} = require("./routes/routerstripe.js"); // Importa las rutas de Stripe
 const server = express();
 
 
@@ -19,7 +19,7 @@ server.use(cookieParser());
 server.use(morgan("dev"));
 
 server.use("/", router);
-server.use("/api", stripeRouter); // Usa un prefijo diferente para las rutas de Stripe
+server.use("/api", stripePost); // Usa un prefijo diferente para las rutas de Stripe
 
 //Ruta para cargar las imagenes
 
