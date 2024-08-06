@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { createproducts } = require("../controllers/productControllers.js");
-const {stripePost} =require('./routerstripe.js')
+const {stripePost} =require('../controllers/stripeController.js')
 const {
   getHandlersProducts,
   getHandlerByIdProduct,

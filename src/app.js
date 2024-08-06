@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fs = require('fs');
 const router = require("./routes/index.js");
-const{ stripePost} = require("./routes/routerstripe.js"); // Importa las rutas de Stripe
+const{ stripePost} = require("../src/controllers/stripeController.js"); // Importa las rutas de Stripe
 const server = express();
 
 
