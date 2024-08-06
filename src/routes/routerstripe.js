@@ -1,9 +1,5 @@
-const { Router } = require('express');
-const { createPayment } = require('../services/stripe');
-
-const router = Router();
-
-router.post('/checkout', async (req, res) => {
+const { createPayment } = require('../config/stripeConfig');
+const stripePost = async (req, res) => {
   try {
     const { id, amount } = req.body;
     const payment = await createPayment(id, amount);
@@ -13,6 +9,6 @@ router.post('/checkout', async (req, res) => {
     console.log(error);
     res.status(500).json({ message: error.raw.message });
   }
-});
+}
 
-module.exports = router;
+module.exports = {stripePost};
