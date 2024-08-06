@@ -11,7 +11,7 @@ const routerproducts = Router();
 
 routerproducts.get("/", getHandlersProducts);
 routerproducts.get("/:idProduct", getHandlerByIdProduct);
-routerproducts.post("/create",  upload.array('images', 10), createproducts);
+routerproducts.post("/create", createproducts);
 routerproducts.put("/edit/:idProduct", editProductHandler);
 
 

@@ -97,43 +97,26 @@ const editProductController = async (idProduct, updates) => {
 
 
 const createproducts = async (req, res) => {
-  console.log('files', req.files);
-  console.log('body', req.body);
-
-  const { name, description, color, brand, price, stock, gender, category } = req.body;
-  let { size } = req.body;
-
-  try {
-    if (!req.files || req.files.length === 0) {
-      throw new Error('No files uploaded');
-    }
-
-    // Convertir size a un array si no lo es
-    size = Array.isArray(size) ? size : size.replace(/[\[\]\n]/g, '').split(',').map(s => s.trim());
-
-    // Subir imágenes a Cloudinary
-    const uploadedImages = await Promise.all(req.files.map((file) => {
-      return new Promise((resolve, reject) => {
-        const uploadStream = cloudinary.uploader.upload_stream({ folder: 'products' }, (error, result) => {
-          if (error) {
-            return reject(error);
-          }
-          resolve(result.secure_url);
-        });
-
-        const bufferStream = new stream.PassThrough();
-        bufferStream.end(file.buffer);
-        bufferStream.pipe(uploadStream);
-      });
-    }));
-
+  const {
+    name,
+    description,
+    color,
+    brand,
+    price,
+    images,  // Ahora recibes las URLs de las imágenes directamente
+    stock,
+    gender,
+    category,
+    size,
+  } = req.body;
+try{
     const newProduct = await Product.create({
       name,
       description,
       color,
       brand,
       price,
-      images: uploadedImages,
+      images,
       stock,
       gender,
       category,
@@ -143,7 +126,7 @@ const createproducts = async (req, res) => {
     res.json({
       message: 'Product created successfully',
       product: newProduct,
-      imageUrls: uploadedImages
+      imageUrls: images
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
