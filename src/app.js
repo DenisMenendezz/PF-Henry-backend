@@ -1,16 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-const morgan  = require('morgan') 
+const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const fs = require('fs');
+const fs = require("fs");
 const router = require("./routes/index.js");
-const{ stripePost} = require("../src/controllers/stripeController.js"); // Importa las rutas de Stripe
+const { stripePost } = require("../src/controllers/stripeController.js"); // Importa las rutas de Stripe
 const server = express();
-
-
-
-
 
 server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
@@ -21,8 +17,14 @@ server.use(morgan("dev"));
 server.use("/", router);
 server.use("/api", stripePost); // Usa un prefijo diferente para las rutas de Stripe
 
-//Ruta para cargar las imagenes
+// Remover COOP y COEP
+server.use((req, res, next) => {
+  res.removeHeader("Cross-Origin-Opener-Policy");
+  res.removeHeader("Cross-Origin-Embedder-Policy");
+  next();
+});
 
+//Ruta para cargar las imagenes
 
 // Error catching endware
 server.use((err, req, res, next) => {
