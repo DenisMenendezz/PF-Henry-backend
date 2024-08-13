@@ -17,6 +17,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true, // Por defecto, un producto está activo
+      },
     },
     { timestamps: false }
   );

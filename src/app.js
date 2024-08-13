@@ -18,13 +18,17 @@ server.use("/", router);
 server.use("/api", stripePost); // Usa un prefijo diferente para las rutas de Stripe
 
 // Configurar COOP y COEP para permitir ventanas emergentes
+// server.use((req, res, next) => {
+//   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+//   res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+//   next();
+// });
+
 server.use((req, res, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
   next();
 });
-
-//Ruta para cargar las imagenes
 
 // Error catching endware
 server.use((err, req, res, next) => {

@@ -34,8 +34,27 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       stock: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.JSONB, // Cambia la estructura del stock
         allowNull: false,
+        defaultValue: {}, // Define el stock inicial vacío para cada talle
+        validate: {
+          customValidator(value) {
+            // Validación para asegurarse de que las claves coincidan con los tamaños permitidos
+            const allowedSizes = ["S", "M", "L", "XL", "XXL"];
+            if (
+              !Object.keys(value).every((size) => allowedSizes.includes(size))
+            ) {
+              throw new Error("Invalid size in stock");
+            }
+            if (
+              !Object.values(value).every(
+                (qty) => typeof qty === "number" && qty >= 0
+              )
+            ) {
+              throw new Error("Invalid stock quantity");
+            }
+          },
+        },
       },
       gender: {
         type: DataTypes.STRING,
