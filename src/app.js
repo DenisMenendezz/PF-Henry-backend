@@ -17,10 +17,10 @@ server.use(morgan("dev"));
 server.use("/", router);
 server.use("/api", stripePost); // Usa un prefijo diferente para las rutas de Stripe
 
-// Remover COOP y COEP
+// Configurar COOP y COEP para permitir ventanas emergentes
 server.use((req, res, next) => {
-  res.removeHeader("Cross-Origin-Opener-Policy");
-  res.removeHeader("Cross-Origin-Embedder-Policy");
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
   next();
 });
 
