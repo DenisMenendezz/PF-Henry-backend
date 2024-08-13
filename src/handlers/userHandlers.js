@@ -2,7 +2,7 @@ const {
   createUserController,
   getUserByIdController,
 } = require("../controllers/userControllers");
-
+const transporter = require('../config/nodemailerConfig');
 const createUserHandler = async (req, res) => {
   try {
     const { uid, email, role } = req.body;
@@ -14,6 +14,13 @@ const createUserHandler = async (req, res) => {
     }
 
     const newUser = await createUserController(uid, email, role);
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Welcome to Our Service!',
+      text: `Hello, ${email}! Your account has been created successfully with the role of ${role}.`,
+    };
+    await transporter.sendMail(mailOptions);
     res.status(201).json({
       message: "The user has been created successfully",
       user: newUser,
