@@ -5,7 +5,7 @@ const { conn } = require("./src/db");
 const PORT = process.env.PORT || 3001;
 
 conn
-  .sync({ force: true, alter: true })
+  .sync({ force: false, alter: true })
   .then(() => {
     console.log("Database & tables created!");
     server.listen(PORT, () => {
