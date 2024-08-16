@@ -4,7 +4,7 @@ const {
 } = require("../controllers/userControllers");
 const transporter = require('../config/nodemailerConfig');
 const createUserHandler = async (req, res) => {
-  const { createUserController } = require('../controllers/userController');
+  const { createUserController } = require('../controllers/userControllers');
   const transporter = require('../config/nodemailerConfig');
   
   const createUserHandler = async (req, res) => {
