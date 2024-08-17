@@ -9,10 +9,10 @@ const { stripePost } = require("../src/controllers/stripeController.js"); // Imp
 const server = express();
 
 server.use(cors({
-  origin:  ['http://localhost:5173/', 'https://proyecto-final-henry-pearl.vercel.app/'], // Permitir solicitudes desde tu dominio de frontend
+  origin:  ['http://localhost:5173', 'https://proyecto-final-henry-pearl.vercel.app'], // Permitir solicitudes desde tu dominio de frontend
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
-  allowedHeaders: "Content-Type,Authorization"
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
@@ -24,12 +24,6 @@ server.use("/", router);
 server.use("/api", stripePost); // Usa un prefijo diferente para las rutas de Stripe
 
 // Configurar COOP y COEP para permitir ventanas emergentes
-// server.use((req, res, next) => {
-//   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-//   res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-//   next();
-// });
-
 server.use((req, res, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
