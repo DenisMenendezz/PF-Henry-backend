@@ -19,4 +19,4 @@ transporter.verify().then(() => {
     console.error('Error configuring email transporter:', error);
   });
   
-  module.exports = {transporter};
+  module.exports = transporter;
