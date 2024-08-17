@@ -2,12 +2,16 @@ const {
   createUserController,
   getUserByIdController,
 } = require("../controllers/userControllers");
-const transporter = require('../config/nodemailerConfig');
-const {User} = require('../models/User')
+const transporter = require("../config/nodeMailerConfig")
+const {User} = require('../db')
 
 const createUserHandler = async (req, res) => {
   try {
     const { uid, email, role } = req.body;
+    
+    if (!uid || !email || !role) {
+      return res.status(400).json({ message: "UID, email, and role are required" });
+    }
 
     // Verificar si el usuario ya está registrado
     const existingUser = await User.findOne({ where: { email } });
@@ -34,8 +38,6 @@ const createUserHandler = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-module.exports = { createUserHandler };
 
 
 const getHandlerByIdUser = async (req, res) => {

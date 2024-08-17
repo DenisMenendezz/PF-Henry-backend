@@ -1,6 +1,7 @@
 
 require('dotenv').config()
 const nodeMailer = require('nodemailer')
+
 const transporter = nodeMailer.createTransport({
   service: 'gmail', // o el servicio que estés usando
   auth: {
@@ -18,4 +19,4 @@ transporter.verify().then(() => {
     console.error('Error configuring email transporter:', error);
   });
   
-  module.exports = transporter;
+  module.exports = {transporter};
