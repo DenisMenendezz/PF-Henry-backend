@@ -2,7 +2,7 @@ const {
   createUserController,
   getUserByIdController,
 } = require("../controllers/userControllers");
-const transporter = require("../config/nodeMailerConfig")
+const transporter = require("../config/nodemailerConfig")
 const {User} = require('../db')
 
 const createUserHandler = async (req, res) => {
