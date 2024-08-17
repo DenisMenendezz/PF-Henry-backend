@@ -9,7 +9,7 @@ const { stripePost } = require("../src/controllers/stripeController.js"); // Imp
 const server = express();
 
 server.use(cors({
-  origin: "https://proyecto-final-henry-pearl.vercel.app", // Permitir solicitudes desde tu dominio de frontend
+  origin:  ['http://localhost:5173/', 'https://proyecto-final-henry-pearl.vercel.app/'], // Permitir solicitudes desde tu dominio de frontend
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   allowedHeaders: "Content-Type,Authorization"

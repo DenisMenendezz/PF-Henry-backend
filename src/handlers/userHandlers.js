@@ -45,7 +45,6 @@ const getHandlerByIdUser = async (req, res) => {
 
   try {
     const user = await getUserByIdController(uid);
-
     res.json(user);
   } catch (error) {
     res.status(404).json({ message: error.message });
