@@ -80,6 +80,11 @@ module.exports = (sequelize) => {
           },
         },
       },
+      stripeId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true, 
+      },
     },
     { timestamps: false }
   );
