@@ -32,6 +32,13 @@ const editProductAdminController = async (idProduct, updates) => {
       throw new Error("Product not found");
     }
 
+    // Verifica si hay una actualización de stock
+    if (updates.stock) {
+      // Combina el stock existente con el nuevo stock
+      const updatedStock = { ...product.stock, ...updates.stock };
+      updates.stock = updatedStock;
+    }
+
     await product.update(updates);
 
     return product;
