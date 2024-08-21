@@ -17,6 +17,6 @@ routerproducts.get("/", getHandlersProducts);
 routerproducts.get("/:idProduct", getHandlerByIdProduct);
 routerproducts.post("/create", createproducts);
 routerproducts.put("/edit/:idProduct", editProductHandler);
-routerproducts.post("/checkout", stripePost, updateShoppingMiddleware);
+routerproducts.post("/checkout", stripePost);
 
 module.exports = routerproducts;
