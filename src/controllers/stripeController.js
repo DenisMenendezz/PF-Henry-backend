@@ -1,13 +1,14 @@
-const transporter  = require('../config/nodemailerConfig');
-const { createPayment } = require('../config/stripeConfig');
+const transporter = require("../config/nodemailerConfig");
+const { createPayment } = require("../config/stripeConfig");
+
 const stripePost = async (req, res) => {
-  const { id, amount, email } = req.body;
+  const { id, amount, email, cartItems } = req.body;
   try {
     const payment = await createPayment(id, amount);
     const mailOptions = {
       from: process.env.EMAIL_USER, // Debería ser tu correo electrónico
       to: email, // El correo electrónico del destinatario
-      subject: 'Compra realizada exitosamente',
+      subject: "Compra realizada exitosamente",
       text: `Hola,
 
       Tu pago de ${amount / 100} USD ha sido procesado exitosamente.
@@ -21,6 +22,6 @@ const stripePost = async (req, res) => {
     console.log(error);
     res.status(500).json({ message: error.raw.message });
   }
-}
+};
 
-module.exports = {stripePost};
+module.exports = { stripePost };

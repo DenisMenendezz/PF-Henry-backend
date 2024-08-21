@@ -47,10 +47,14 @@ let capEntries = entries.map((entry) => {
 });
 sequelize.models = Object.fromEntries(capEntries);
 
-const { Product, User } = sequelize.models;
+const { Product, User, Review } = sequelize.models;
 
 // Relacionamos los modelos aquí
-// Product.hasMany(Reviews);
+Product.hasMany(Review, { foreignKey: "productId" });
+Review.belongsTo(Product, { foreignKey: "productId" });
+
+User.hasMany(Review, { foreignKey: "userId" });
+Review.belongsTo(User, { foreignKey: "userId" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
