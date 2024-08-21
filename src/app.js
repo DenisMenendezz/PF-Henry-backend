@@ -1,38 +1,30 @@
-// src/app.js
 const express = require("express");
 const cors = require("cors");
+const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const morgan = require("morgan");
-const multer = require('multer');
-const cloudinary = require('cloudinary')
+const fs = require("fs");
 const router = require("./routes/index.js");
+const { stripePost } = require("../src/controllers/stripeController.js"); // Importa las rutas de Stripe
 const server = express();
 
-//configuracion cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-// Configuración de Multer
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
-
-server.use(cors());
+server.use(
+  cors({
+    origin: function (origin, callback) {
+      callback(null, origin || "*"); // Permitir cualquier origen, pero mantener credenciales
+    },
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 // server.use(
 //   cors({
-//     // origin: 'http://localhost:10000',
-//     // credentials: true
+//     origin: "*", // Permitir solicitudes desde tu dominio de frontend
+//     // methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     // credentials: true,
+//     // allowedHeaders: ["Content-Type", "Authorization"],
 //   })
 // );
 
@@ -42,31 +34,21 @@ server.use(cookieParser());
 server.use(morgan("dev"));
 
 server.use("/", router);
+server.use("/api", stripePost); // Usa un prefijo diferente para las rutas de Stripe
 
-//Ruta para cargar las imagenes
-server.post('/upload', upload.single('image'), async(req, res)=>{
-  try {
-    //sube la imagen a cloudinary
-    const result = await cloudinary.uploader.upload(req.file.path)
+// Configurar COOP y COEP para permitir ventanas emergentes
+server.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  next();
+});
 
-    fs.unlinkSync(req.file.path);
-    res.status(200).json(result)
-  } catch (error) {
-    res.status(400).send(error.message)
-  }
-})
-
-// Error catching endware.
+// Error catching endware
 server.use((err, req, res, next) => {
   const status = err.status || 500;
   const message = err.message || err;
   console.error(err);
   res.status(status).send(message);
 });
-
-// const port = process.env.PORT || 3001;
-// server.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
 
 module.exports = server;

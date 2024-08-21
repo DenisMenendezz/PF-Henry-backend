@@ -1,5 +1,7 @@
 const { Product } = require("../db");
 const { Op } = require("sequelize");
+const cloudinary = require('../config/cloudinaryConfig')
+const stream = require('stream')
 
 const getProductsController = async (filters, pagination) => {
   try {
@@ -92,6 +94,8 @@ const editProductController = async (idProduct, updates) => {
   }
 };
 
+
+
 const createproducts = async (req, res) => {
   const {
     name,
@@ -99,15 +103,14 @@ const createproducts = async (req, res) => {
     color,
     brand,
     price,
-    images,
+    images,  // Ahora recibes las URLs de las imágenes directamente
     stock,
     gender,
     category,
     size,
   } = req.body;
-
-  try {
-    const newproducts = await Product.create({
+try{
+    const newProduct = await Product.create({
       name,
       description,
       color,
@@ -120,12 +123,17 @@ const createproducts = async (req, res) => {
       size,
     });
 
-    res.json(newproducts);
-    console.log(req.body);
+    res.json({
+      message: 'Product created successfully',
+      product: newProduct,
+      imageUrls: images
+    });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
+
+module.exports = { createproducts };
 
 module.exports = {
   getProductsController,
