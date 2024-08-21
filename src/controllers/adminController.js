@@ -39,6 +39,15 @@ const editProductAdminController = async (idProduct, updates) => {
       updates.stock = updatedStock;
     }
 
+    // Verifica si hay una actualización de size
+    if (updates.size) {
+      // Combina los sizes existentes con los nuevos sizes sin duplicar
+      const updatedSize = Array.from(
+        new Set([...product.size, ...updates.size])
+      );
+      updates.size = updatedSize;
+    }
+
     await product.update(updates);
 
     return product;
