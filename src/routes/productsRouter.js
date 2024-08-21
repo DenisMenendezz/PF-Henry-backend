@@ -9,6 +9,7 @@ const {
 const upload = require("../config/multerConfig.js");
 const checkStockMiddleware = require("../middleware/CheckStock.js");
 const updateStockMiddleware = require("../middleware/updateStock.js");
+const updateShoppingMiddleware = require("../middleware/updateShopping.js");
 
 const routerproducts = Router();
 
@@ -16,11 +17,6 @@ routerproducts.get("/", getHandlersProducts);
 routerproducts.get("/:idProduct", getHandlerByIdProduct);
 routerproducts.post("/create", createproducts);
 routerproducts.put("/edit/:idProduct", editProductHandler);
-routerproducts.post(
-  "/checkout",
-  checkStockMiddleware,
-  stripePost,
-  updateStockMiddleware
-);
+routerproducts.post("/checkout", stripePost, updateShoppingMiddleware);
 
 module.exports = routerproducts;

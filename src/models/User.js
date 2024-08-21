@@ -17,9 +17,13 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      shopping: {
+        type: DataTypes.JSONB,
+        defaultValue: [],
+      },
       active: {
         type: DataTypes.BOOLEAN,
-        defaultValue: true, // Por defecto, un producto está activo
+        defaultValue: true,
       },
     },
     { timestamps: false }
