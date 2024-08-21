@@ -2,6 +2,7 @@ const { User } = require("../db");
 const {
   getReviewController,
   postReviewController,
+  updateReviewController,
 } = require("../controllers/reviewController");
 
 const getReviewHandler = async (req, res) => {
@@ -72,7 +73,25 @@ const postReviewHandler = async (req, res) => {
 //   }
 // };
 
+const updateReviewHandler = async (req, res) => {
+  const { idReview } = req.params;
+  const { comment } = req.body;
+
+  try {
+    const updatedReview = await updateReviewController(idReview, comment);
+
+    if (!updatedReview) {
+      return res.status(404).json({ message: "Review not found" });
+    }
+
+    res.status(200).json(updatedReview);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getReviewHandler,
   postReviewHandler,
+  updateReviewHandler,
 };

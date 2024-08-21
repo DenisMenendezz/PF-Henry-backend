@@ -30,7 +30,25 @@ const postReviewController = async (idProduct, userId, comment) => {
   }
 };
 
+const updateReviewController = async (idReview, comment) => {
+  try {
+    const review = await Review.findByPk(idReview);
+
+    if (!review) {
+      return null;
+    }
+
+    review.comment = comment;
+    await review.save();
+
+    return review;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 module.exports = {
   getReviewController,
   postReviewController,
+  updateReviewController,
 };
