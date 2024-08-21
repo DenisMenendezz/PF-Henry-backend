@@ -20,9 +20,9 @@ const stripePost = async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    await updateShoppingMiddleware(req, res, () => {
-      res.status(200).json({ payment });
-    });
+    await updateShoppingMiddleware(req, res, () => {});
+
+    res.status(200).json({ payment });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.raw.message });
