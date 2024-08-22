@@ -26,8 +26,18 @@ const createUserHandler = async (req, res) => {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'Welcome to Our Platform!',
-      text: 'Thank you for registering!',
+      subject: 'Welcome to Champion Gear!',
+      html: `
+      <p>¡Gracias por registrarte en Champion Gear!</p>
+      <a href="https://proyecto-final-henry-pearl.vercel.app/" target="_blank">
+        <img src="cid:logo" alt="Champion Gear Logo" style="display:block;" />
+      </a>
+    `,
+    attachments: [{
+      filename: 'logo.png',
+      path: '../assets/championgear.webp',
+      cid: 'logo' // Identificador del contenido
+    }]
     });
 
     res.status(201).json({

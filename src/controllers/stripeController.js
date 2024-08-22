@@ -11,11 +11,17 @@ const stripePost = async (req, res) => {
       from: process.env.EMAIL_USER, // Debería ser tu correo electrónico
       to: email, // El correo electrónico del destinatario
       subject: "Compra realizada exitosamente",
-      text: `Hola,
-
-      Tu pago de ${amount / 100} USD ha sido procesado exitosamente.
-
-      Gracias por tu compra!`,
+      html: `
+      <p>¡Gracias por realizar tu compra en Champion Gear!</p>
+      <a href="https://proyecto-final-henry-pearl.vercel.app/home" target="_blank">
+        <img src="cid:logo" alt="Champion Gear Logo" style="display:block;" />
+      </a>
+    `,
+    attachments: [{
+      filename: 'logo.png',
+      path: '../assets/championgear.webp',
+      cid: 'logo' // Identificador del contenido
+    }]
     };
 
     await transporter.sendMail(mailOptions);
