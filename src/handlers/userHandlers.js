@@ -24,16 +24,19 @@ const createUserHandler = async (req, res) => {
     }
 
     // Crear un nuevo usuario
-    // const newUser = await User.create({ uid, email, role });
-
     const newUser = await createUserController(uid, email, role);
 
     // Enviar correo de bienvenida
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
-      subject: "Welcome to Our Platform!",
-      text: "Thank you for registering!",
+      subject: "Welcome to Champion Gear!",
+      html: `
+        <p>¡Gracias por registrarte en Champion Gear!</p>
+        <a href="https://proyecto-final-henry-pearl.vercel.app/" target="_blank">
+          <img src="https://res.cloudinary.com/dbveu2rga/image/upload/v1724291204/championgear_bg32op.webp" alt="Champion Gear Logo" style="display:block;" />
+        </a>
+      `,
     });
 
     res.status(201).json({
@@ -42,6 +45,7 @@ const createUserHandler = async (req, res) => {
       user: newUser,
     });
   } catch (error) {
+    console.error("Error in createUserHandler:", error);
     res.status(500).json({ message: error.message });
   }
 };
