@@ -21,7 +21,7 @@ const createUserHandler = async (req, res) => {
     }
 
     // Crear un nuevo usuario
-    const newUser = await User.create({ uid, email, role });
+    const newUser = await createUserController( uid, email, role );
 
     // Enviar correo de bienvenida
     await transporter.sendMail({
