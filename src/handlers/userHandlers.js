@@ -21,7 +21,7 @@ const createUserHandler = async (req, res) => {
     }
 
     // Crear un nuevo usuario
-    const newUser = await createUserController( uid, email, role );
+    const newUser = await createUserController(uid, email, role);
 
     // Enviar correo de bienvenida
     await transporter.sendMail({
@@ -41,6 +41,7 @@ const createUserHandler = async (req, res) => {
       user: newUser,
     });
   } catch (error) {
+    console.error('Error in createUserHandler:', error);
     res.status(500).json({ message: error.message });
   }
 };
