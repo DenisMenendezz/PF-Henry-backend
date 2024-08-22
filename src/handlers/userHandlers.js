@@ -5,6 +5,7 @@ const {
 const transporter = require("../config/nodemailerConfig")
 const {User} = require('../db')
 
+
 const createUserHandler = async (req, res) => {
   try {
     const { uid, email, role } = req.body;
@@ -35,7 +36,7 @@ const createUserHandler = async (req, res) => {
     `,
     attachments: [{
       filename: 'logo.png',
-      path: '../assets/championgear.webp',
+      path: 'https://res.cloudinary.com/dbveu2rga/image/upload/v1724291204/championgear_bg32op.webp',
       cid: 'logo' // Identificador del contenido
     }]
     });
