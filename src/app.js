@@ -8,11 +8,20 @@ const router = require("./routes/index.js");
 const { stripePost } = require("../src/controllers/stripeController.js"); // Importa las rutas de Stripe
 const server = express();
 
+// server.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       callback(null, origin || "*"); // Permitir cualquier origen, pero mantener credenciales
+//     },
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true,
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
+
 server.use(
   cors({
-    origin: function (origin, callback) {
-      callback(null, origin || "*"); // Permitir cualquier origen, pero mantener credenciales
-    },
+    origin: "https://proyecto-final-henry-pearl.vercel.app", // Permitir solicitudes desde tu dominio de frontend
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
